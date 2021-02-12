@@ -34,21 +34,21 @@ namespace Presentacion.Controllers
         }
 
         public ActionResult AgregarDatos(int cboVehiculo, int cboServicio) {
-            string msj="";
             Vehiculo_Servicio vs = new Vehiculo_Servicio();
 
             vs.ID_Servicio = cboServicio;
             vs.ID_Vehiculo = cboVehiculo;
-
-            if (BLVS.Agregar(vs).Equals("Datos agregados correctamente."))
+            string msj = BLVS.Agregar(vs);
+            string content = "";
+            if (msj.Equals("Datos agregados correctamente."))
             {
-                msj = "<script languaje='javascript' type='text/javascript'> alert('Tarea Existosa'); window.location.href='/Reporte/ListarReporte'; </script>'";
+                content = "<script languaje='javascript' type='text/javascript'> alert('"+msj+"'); window.location.href='/Reporte/ListarReporte'; </script>'";
             }
             else
             {
-                msj = "<script languaje='javascript' type='text/javascript'> alert('Error, Registro no agregado'); window.location.href='/Reporte/InsertarServicios'; </script>'";
+                content = "<script languaje='javascript' type='text/javascript'> alert('"+msj+"'); window.location.href='/Reporte/InsertarServicios'; </script>'";
             }
-            return Content(msj);
+            return Content(content);
         }
     }
 }

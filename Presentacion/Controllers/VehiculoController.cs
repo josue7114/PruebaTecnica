@@ -28,18 +28,34 @@ namespace Presentacion.Controllers
 
         public ActionResult InsertarVehiculo(string txtplaca, string txtdueno, string txtmarca) {
             Vehiculo vehiculo = new Vehiculo();
-            vehiculo.Placa = txtplaca;
-            vehiculo.Dueno = txtdueno;
-            vehiculo.Marca = txtmarca;
             string msj = "";
-            if (BLV.Agregar(vehiculo).Equals("Vehículo agregado correctamente."))
+            if (txtplaca.Equals(""))
             {
-                msj = "<script languaje='javascript' type='text/javascript'> alert('Tarea Existosa'); window.location.href='/Vehiculo/ListaVehiculos'; </script>'";
+                msj = "Debe ingresar una placa";
+            }
+            else if (txtdueno.Equals(""))
+            {
+                msj = "Debe ingresar el nombre del dueño";
+            }
+            else if (txtmarca.Equals(""))
+            {
+                msj = "Debe indicar la marca del vehículo";
             }
             else {
-                msj = "<script languaje='javascript' type='text/javascript'> alert('Error, Vehiculo no agregado'); window.location.href='/Vehiculo/AgregarVehiculo'; </script>'";
+                vehiculo.Placa = txtplaca;
+                vehiculo.Dueno = txtdueno;
+                vehiculo.Marca = txtmarca;
+                msj = BLV.Agregar(vehiculo);
             }
-            return Content(msj);
+            String content = "";
+            if (msj.Equals("Vehículo agregado correctamente."))
+            {
+                content = "<script languaje='javascript' type='text/javascript'> alert('"+msj+"'); window.location.href='/Vehiculo/ListaVehiculos'; </script>'";
+            }
+            else {
+                content = "<script languaje='javascript' type='text/javascript'> alert('"+msj+"'); window.location.href='/Vehiculo/AgregarVehiculo'; </script>'";
+            }
+            return Content(content);
         }
 
 
@@ -49,34 +65,50 @@ namespace Presentacion.Controllers
 
         public ActionResult ActualizarVehiculo(string txtID, string txtplaca, string txtdueno, string txtmarca) {
             Vehiculo vehiculo = new Vehiculo();
-            vehiculo.ID_Vehiculo = Convert.ToInt32(txtID);
-            vehiculo.Placa = txtplaca;
-            vehiculo.Dueno = txtdueno;
-            vehiculo.Marca = txtmarca;
             string msj = "";
-            if (BLV.Modificar(vehiculo, vehiculo.ID_Vehiculo).Equals("Datos de vehículo modificados correctamente."))
+            if (txtplaca.Equals(""))
             {
-                msj = "<script languaje='javascript' type='text/javascript'> alert('Tarea Existosa'); window.location.href='/Vehiculo/ListaVehiculos'; </script>'";
+                msj = "Debe ingresar una placa";
+            }
+            else if (txtdueno.Equals(""))
+            {
+                msj = "Debe ingresar el nombre del dueño";
+            }
+            else if (txtmarca.Equals(""))
+            {
+                msj = "Debe indicar la marca del vehículo";
             }
             else
             {
-                msj = "<script languaje='javascript' type='text/javascript'> alert('Error, Vehiculo no modificado'); window.location.href='/Vehiculo/ModificarVehiculo'; </script>'";
+                vehiculo.Placa = txtplaca;
+                vehiculo.Dueno = txtdueno;
+                vehiculo.Marca = txtmarca;
+                msj = BLV.Modificar(vehiculo, vehiculo.ID_Vehiculo);
             }
-            return Content(msj);
+            string content = "";
+            if (msj.Equals("Datos de vehículo modificados correctamente."))
+            {
+                content = "<script languaje='javascript' type='text/javascript'> alert('Tarea Existosa'); window.location.href='/Vehiculo/ListaVehiculos'; </script>'";
+            }
+            else
+            {
+                content = "<script languaje='javascript' type='text/javascript'> alert('Error, Vehiculo no modificado'); window.location.href='/Vehiculo/ModificarVehiculo'; </script>'";
+            }
+            return Content(content);
         }
 
         public ActionResult EliminarVehiculo(int codigo) {
-            string msj = "";
-
-            if (BLV.Eliminar(codigo).Equals("Los datos del vehículo, se eliminaron correctamente."))
+            string msj = BLV.Eliminar(codigo);
+            string content = "";
+            if (msj.Equals("Los datos del vehículo, se eliminaron correctamente."))
             {
-                msj = "<script languaje='javascript' type='text/javascript'> alert('Tarea Existosa'); window.location.href='/Vehiculo/ListaVehiculos'; </script>'";
+                content = "<script languaje='javascript' type='text/javascript'> alert('"+msj+"'); window.location.href='/Vehiculo/ListaVehiculos'; </script>'";
             }
             else
             {
-                msj = "<script languaje='javascript' type='text/javascript'> alert('Error, Vehiculo no eliminado'); window.location.href='/Vehiculo/ListaVehiculos'; </script>'";
+                content = "<script languaje='javascript' type='text/javascript'> alert('"+msj+"'); window.location.href='/Vehiculo/ListaVehiculos'; </script>'";
             }
-            return Content(msj);
+            return Content(content);
         }
     }
 }

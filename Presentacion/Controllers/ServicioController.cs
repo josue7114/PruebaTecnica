@@ -29,18 +29,30 @@ namespace Presentacion.Controllers
 
         public ActionResult InsertarServicio(string txtdescripcion, string txtmonto) {
             Servicios servicio = new Servicios();
-            servicio.Descripcion = txtdescripcion;
-            servicio.Monto = Convert.ToInt32(txtmonto);
             string msj = "";
-            if (BLS.Agregar(servicio).Equals("Servicio agregado correctamente."))
+            if (txtdescripcion.Equals(""))
             {
-                msj = "<script languaje='javascript' type='text/javascript'> alert('Tarea Existosa'); window.location.href='/Servicio/ListaServicios'; </script>'";
+                msj = "Debe ingresar una descripción";
+            }
+            else if (txtmonto.Equals(""))
+            {
+                msj = "Debe ingresar un monto";
+            }
+            else {
+                servicio.Descripcion = txtdescripcion;
+                servicio.Monto = Convert.ToInt32(txtmonto);
+                msj = BLS.Agregar(servicio);
+            }
+            string content = "";
+            if (msj.Equals("Servicio agregado correctamente."))
+            {
+                content = "<script languaje='javascript' type='text/javascript'> alert('"+msj+"'); window.location.href='/Servicio/ListaServicios'; </script>'";
             }
             else
             {
-                msj = "<script languaje='javascript' type='text/javascript'> alert('Error, Servicio no agregado'); window.location.href='/Servicio/AgregarServicio'; </script>'";
+                content = "<script languaje='javascript' type='text/javascript'> alert('"+msj+"'); window.location.href='/Servicio/AgregarServicio'; </script>'";
             }
-            return Content(msj);
+            return Content(content);
         }
 
         public ActionResult ModificarServicio(int codigo) {
@@ -52,30 +64,33 @@ namespace Presentacion.Controllers
             servicio.ID_Servicio = Convert.ToInt32(txtID);
             servicio.Descripcion = txtdescripcion;
             servicio.Monto = Convert.ToInt32(txtmonto);
-            string msj = "";
-            if (BLS.Modificar(servicio, servicio.ID_Servicio).Equals("Datos de servicio modificados correctamente."))
+            string msj = BLS.Modificar(servicio, servicio.ID_Servicio);
+            string content = "";
+
+            if (msj.Equals("Datos de servicio modificados correctamente."))
             {
-                msj = "<script languaje='javascript' type='text/javascript'> alert('Tarea Existosa'); window.location.href='/Servicio/ListaServicios'; </script>'";
+                content = "<script languaje='javascript' type='text/javascript'> alert('"+msj+"'); window.location.href='/Servicio/ListaServicios'; </script>'";
             }
             else
             {
-                msj = "<script languaje='javascript' type='text/javascript'> alert('Error, Servicio no modificado'); window.location.href='/Servicio/ModificarServicio'; </script>'";
+                content = "<script languaje='javascript' type='text/javascript'> alert('"+msj+"'); window.location.href='/Servicio/ModificarServicio'; </script>'";
             }
-            return Content(msj);
+            return Content(content);
         }
 
         public ActionResult EliminarServicio(int codigo) {
-            string msj = "";
+            string msj = BLS.Eliminar(codigo);
+            string content = "";
 
-            if (BLS.Eliminar(codigo).Equals("Los datos del servicio, se eliminaron correctamente."))
+            if (msj.Equals("Los datos del servicio, se eliminaron correctamente."))
             {
-                msj = "<script languaje='javascript' type='text/javascript'> alert('Tarea Existosa'); window.location.href='/Servicio/ListaServicios'; </script>'";
+                content = "<script languaje='javascript' type='text/javascript'> alert('"+msj+"'); window.location.href='/Servicio/ListaServicios'; </script>'";
             }
             else
             {
-                msj = "<script languaje='javascript' type='text/javascript'> alert('Error, Servicio no eliminado'); window.location.href='/Servicio/ListaServicios'; </script>'";
+                content = "<script languaje='javascript' type='text/javascript'> alert('"+msj+"'); window.location.href='/Servicio/ListaServicios'; </script>'";
             }
-            return Content(msj);
+            return Content(content);
         }
     }
 }
