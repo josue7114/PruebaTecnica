@@ -93,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ServicioController.cs" />
     <Compile Include="Controllers\VehiculoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -107,6 +108,9 @@
     <Content Include="Views\Vehiculo\ListaVehiculos.cshtml" />
     <Content Include="Views\Vehiculo\AgregarVehiculo.cshtml" />
     <Content Include="Views\Vehiculo\ModificarVehiculo.cshtml" />
+    <Content Include="Views\Servicio\Index.cshtml" />
+    <Content Include="Views\Servicio\ListaServicios.cshtml" />
+    <Content Include="Views\Servicio\AgregarServicio.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

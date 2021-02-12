@@ -64,5 +64,19 @@ namespace Presentacion.Controllers
             }
             return Content(msj);
         }
+
+        public ActionResult EliminarVehiculo(int codigo) {
+            string msj = "";
+
+            if (BLV.Eliminar(codigo).Equals("Los datos del vehículo, se eliminaron correctamente."))
+            {
+                msj = "<script languaje='javascript' type='text/javascript'> alert('Tarea Existosa'); window.location.href='/Vehiculo/ListaVehiculos'; </script>'";
+            }
+            else
+            {
+                msj = "<script languaje='javascript' type='text/javascript'> alert('Error, Vehiculo no eliminado'); window.location.href='/Vehiculo/ListaVehiculos'; </script>'";
+            }
+            return Content(msj);
+        }
     }
 }

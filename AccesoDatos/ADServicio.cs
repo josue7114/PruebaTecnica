@@ -21,7 +21,7 @@ namespace AccesoDatos
             {
                 string Cadena = ConfigurationManager.ConnectionStrings["Prueba"].ConnectionString;
                 DA.Conexion con = new DA.Conexion(Cadena);
-                SqlCommand query = new SqlCommand("INSERT INTO Vehiculo(Descripcion, servicio) VALUES (@p1, @p2)");
+                SqlCommand query = new SqlCommand("INSERT INTO Servicios(Descripcion, Monto) VALUES (@p1, @p2)");
                 query.Parameters.AddWithValue("@p1", servicio.Descripcion);
                 query.Parameters.AddWithValue("@p2", servicio.Monto);
 
@@ -101,7 +101,7 @@ namespace AccesoDatos
             return "Los datos del servicio, se eliminaron correctamente.";
         }
 
-        public DataTable ObtenerTodo()
+        public List<Servicios> ObtenerTodo()
         {
             try
             {
@@ -109,7 +109,16 @@ namespace AccesoDatos
                 DA.Conexion Con = new DA.Conexion(Cadena);
                 SqlCommand query = new SqlCommand("SELECT ID_Servicio, Descripcion, Monto FROM Servicios ORDER BY ID_Servicio");
                 DataTable Tabla = Con.ejecutarConsultaSQLTablaSegura(query);
+                List<Servicios> listS = new List<Servicios>();
 
+                foreach (DataRow item in Tabla.Rows)
+                {
+                    Servicios servicio = new Servicios();
+                    servicio.ID_Servicio= Convert.ToInt32(item["ID_Servicio"].ToString());
+                    servicio.Descripcion = item["Descripcion"].ToString();
+                    servicio.Monto = Convert.ToInt32(item["Monto"].ToString());
+                    listS.Add(servicio);
+                }
                 if (Con.IsError)
                 {
                     Con.Destruir();
@@ -118,7 +127,7 @@ namespace AccesoDatos
                 else
                 {
                     Con.Destruir();
-                    return Tabla;
+                    return listS;
                 }
             }
             catch (Exception ex)

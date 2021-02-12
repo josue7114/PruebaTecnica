@@ -1,0 +1,26 @@
+﻿@model List<Entidades.Servicios>
+
+@{
+    ViewBag.Title = "ListaServicios";
+    Layout = "~/Views/layout/layoutMenu.cshtml";
+}
+
+<h2>Lista Servicios</h2>
+
+<table border="1">
+    <tr>
+        <th>ID Servicio</th>
+        <th>Descripción</th>
+        <th>Monto</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ID_Servicio</td>
+            <td>@item.Descripcion</td>
+            <td>@item.Monto</td>
+            <td>@Html.ActionLink("Actualizar", "", new { codigo = item.ID_Servicio })</td>
+            <td>@Html.ActionLink("Eliminar", "", new { codigo = item.ID_Servicio })</td>
+        </tr>
+    }
+</table>

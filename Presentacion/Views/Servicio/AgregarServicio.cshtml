@@ -1,0 +1,29 @@
+﻿@model Entidades.Servicios
+
+@{
+    ViewBag.Title = "AgregarServicio";
+    Layout = "~/Views/layout/layoutMenu.cshtml";
+}
+
+<h2>Agregar Servicio</h2>
+
+<div>
+    @using (Html.BeginForm("InsertarServicio", "Servicio", FormMethod.Post))
+    {
+        <div>
+            
+            <div>
+                <label for="descripcion">Descripción:</label>
+                <input type="text" name="txtdescripcion" />
+            </div>
+            <div>
+                <label for="monto">Monto:</label>
+                <input type="text" name="txtmonto" />
+            </div>
+            <div>
+                <button type="submit">Agregar</button>
+            </div>
+        </div>
+    }
+</div>
+
