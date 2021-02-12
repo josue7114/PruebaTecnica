@@ -1,0 +1,43 @@
+﻿@model Entidades.Vehiculo_Servicio
+
+@{
+    ViewBag.Title = "InsertarServicios";
+    Layout = "~/Views/layout/layoutMenu.cshtml";
+
+    var listaVehiculos = ViewBag.listadoV;
+    var listaServicios = ViewBag.listadoS;
+}
+
+<h2>InsertarServicios</h2>
+
+<div>
+    @using (Html.BeginForm("AgregarDatos", "Reporte", FormMethod.Post)) {
+    <div>
+        <label>Vehículo:</label>
+        <select name="cboVehiculo">
+            <option value="0">Seleccione un vehículo</option>
+            @foreach (var item in listaVehiculos)
+            {
+                <option value="@item.ID_Vehiculo">@item.Placa</option>
+            }
+        </select>
+    </div>
+
+    <div>
+        <label>Servicio:</label>
+        <select name="cboServicio">
+            <option value="0">Seleccione un servicio</option>
+            @foreach (var item in listaServicios)
+            {
+                <option value="@item.ID_Servicio">@item.Descripcion</option>
+            }
+        </select>
+    </div>
+    <div>
+        <button type="submit">Agregar</button>
+    </div>
+    }
+    
+
+</div>
+

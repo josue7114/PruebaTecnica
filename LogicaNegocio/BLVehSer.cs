@@ -29,5 +29,9 @@ namespace LogicaNegocio
             }
             return nvs;
         }
+
+        public string Agregar(Vehiculo_Servicio veh_ser) {
+            return ADVS.Agregar(veh_ser);
+        }
     }
 }

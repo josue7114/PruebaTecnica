@@ -112,7 +112,7 @@
     <Content Include="Views\Servicio\AgregarServicio.cshtml" />
     <Content Include="Views\Servicio\ModificarServicio.cshtml" />
     <Content Include="Views\Reporte\ListarReporte.cshtml" />
-    <Content Include="Views\Reporte\AsignarServicios.cshtml" />
+    <Content Include="Views\Reporte\InsertarServicios.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
