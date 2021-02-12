@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ADServicio.cs" />
+    <Compile Include="ADVeh-Ser.cs" />
     <Compile Include="ADVehiculo.cs" />
     <Compile Include="Conexion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
