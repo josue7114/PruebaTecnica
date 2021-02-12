@@ -111,6 +111,7 @@
     <Content Include="Views\Servicio\Index.cshtml" />
     <Content Include="Views\Servicio\ListaServicios.cshtml" />
     <Content Include="Views\Servicio\AgregarServicio.cshtml" />
+    <Content Include="Views\Servicio\ModificarServicio.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -42,5 +42,26 @@ namespace Presentacion.Controllers
             }
             return Content(msj);
         }
+
+        public ActionResult ModificarServicio(int codigo) {
+            return View(BLS.Obtener(codigo));
+        }
+
+        public ActionResult ActualizarServicio(string txtID, string txtdescripcion, string txtmonto) {
+            Servicios servicio = new Servicios();
+            servicio.ID_Servicio = Convert.ToInt32(txtID);
+            servicio.Descripcion = txtdescripcion;
+            servicio.Monto = Convert.ToInt32(txtmonto);
+            string msj = "";
+            if (BLS.Modificar(servicio, servicio.ID_Servicio).Equals("Datos de servicio modificados correctamente."))
+            {
+                msj = "<script languaje='javascript' type='text/javascript'> alert('Tarea Existosa'); window.location.href='/Servicio/ListaServicios'; </script>'";
+            }
+            else
+            {
+                msj = "<script languaje='javascript' type='text/javascript'> alert('Error, Servicio no modificado'); window.location.href='/Servicio/ModificarServicio'; </script>'";
+            }
+            return Content(msj);
+        }
     }
 }

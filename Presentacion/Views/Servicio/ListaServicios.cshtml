@@ -19,7 +19,7 @@
             <td>@item.ID_Servicio</td>
             <td>@item.Descripcion</td>
             <td>@item.Monto</td>
-            <td>@Html.ActionLink("Actualizar", "", new { codigo = item.ID_Servicio })</td>
+            <td>@Html.ActionLink("Actualizar", "ModificarServicio", new { codigo = item.ID_Servicio })</td>
             <td>@Html.ActionLink("Eliminar", "", new { codigo = item.ID_Servicio })</td>
         </tr>
     }

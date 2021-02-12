@@ -1,0 +1,31 @@
+﻿@model Entidades.Servicios
+
+@{
+    ViewBag.Title = "ModificarServicio";
+    Layout = "~/Views/layout/layoutMenu.cshtml";
+}
+
+<h2>Modificar Servicio</h2>
+
+<div>
+    @using (Html.BeginForm("ActualizarServicio", "Servicio", FormMethod.Post))
+    {
+    <div>
+        <div>
+            <label for="id">ID Servicio:</label>
+            <input type="text" name="txtID" value="@Model.ID_Servicio" readonly/>
+        </div>
+        <div>
+            <label for="descripcion">Descripción:</label>
+            <input type="text" name="txtdescripcion" value="@Model.Descripcion"/>
+        </div>
+        <div>
+            <label for="monto">Monto:</label>
+            <input type="text" name="txtmonto" value="@Model.Monto"/>
+        </div>
+        <div>
+            <button type="submit">Actualizar</button>
+        </div>
+    </div>
+    }
+</div>
