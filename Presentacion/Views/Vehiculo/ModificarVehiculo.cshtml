@@ -1,0 +1,36 @@
+﻿@model Entidades.Vehiculo
+
+@{
+    ViewBag.Title = "ModificarVehiculo";
+    Layout = "~/Views/layout/layoutMenu.cshtml";
+}
+
+<h2>Modificar Vehiculo</h2>
+
+<div>
+    @using (Html.BeginForm("ActualizarVehiculo", "Vehiculo", FormMethod.Post))
+    {
+    <div>
+        <div>
+            <label for="Id">ID Vehículo:</label>
+            <input type="text" name="txtID" value="@Model.ID_Vehiculo" readonly/>
+        </div>
+        <div>
+            <label for="placa">Placa:</label>
+            <input type="text" name="txtplaca" value="@Model.Placa"/>
+        </div>
+        <div>
+            <label for="dueno">Dueño:</label>
+            <input type="text" name="txtdueno" value="@Model.Dueno"/>
+        </div>
+        <div>
+            <label for="marca">Marca:</label>
+            <input type="text" name="txtmarca" value="@Model.Marca"/>
+        </div>
+        <div>
+            <button type="submit">Actualizar</button>
+        </div>
+    </div>
+    }
+</div>
+

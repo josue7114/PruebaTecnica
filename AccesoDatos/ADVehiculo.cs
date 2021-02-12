@@ -146,7 +146,7 @@ namespace AccesoDatos
             {
                 string Cadena = ConfigurationManager.ConnectionStrings["Prueba"].ConnectionString;
                 DA.Conexion Con = new DA.Conexion(Cadena);
-                SqlCommand query = new SqlCommand("SELECT ID_Vehiculo, Placa, Dueno, Marca FROM Vehiculo FROM Vehiculo WHERE ID_Vehiculo= @p1");
+                SqlCommand query = new SqlCommand("SELECT ID_Vehiculo, Placa, Dueno, Marca FROM Vehiculo WHERE ID_Vehiculo= @p1");
                 query.Parameters.AddWithValue("@p1", codigo);
                 DataTable Tabla = Con.ejecutarConsultaSQLTablaSegura(query);
 

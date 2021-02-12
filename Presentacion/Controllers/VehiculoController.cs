@@ -41,5 +41,28 @@ namespace Presentacion.Controllers
             }
             return Content(msj);
         }
+
+
+        public ActionResult ModificarVehiculo(int codigo) {
+            return View(BLV.Obtener(codigo));
+        }
+
+        public ActionResult ActualizarVehiculo(string txtID, string txtplaca, string txtdueno, string txtmarca) {
+            Vehiculo vehiculo = new Vehiculo();
+            vehiculo.ID_Vehiculo = Convert.ToInt32(txtID);
+            vehiculo.Placa = txtplaca;
+            vehiculo.Dueno = txtdueno;
+            vehiculo.Marca = txtmarca;
+            string msj = "";
+            if (BLV.Modificar(vehiculo, vehiculo.ID_Vehiculo).Equals("Datos de vehículo modificados correctamente."))
+            {
+                msj = "<script languaje='javascript' type='text/javascript'> alert('Tarea Existosa'); window.location.href='/Vehiculo/ListaVehiculos'; </script>'";
+            }
+            else
+            {
+                msj = "<script languaje='javascript' type='text/javascript'> alert('Error, Vehiculo no modificado'); window.location.href='/Vehiculo/ModificarVehiculo'; </script>'";
+            }
+            return Content(msj);
+        }
     }
 }

@@ -21,6 +21,7 @@
             <td>@item.Placa</td>
             <td>@item.Dueno</td>
             <td>@item.Marca</td>
+            <td>@Html.ActionLink("Actualizar", "ModificarVehiculo", new { codigo = item.ID_Vehiculo})</td>
         </tr>
     }
 </table>

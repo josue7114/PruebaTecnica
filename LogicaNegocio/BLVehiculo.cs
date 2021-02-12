@@ -17,6 +17,14 @@ namespace LogicaNegocio
             return DAV.Agregar(vehiculo);
         }
 
+        public Vehiculo Obtener(int codigo) {
+            return DAV.Obtener(codigo);
+        }
+
+        public string Modificar(Vehiculo vehiculo, int codigo) {
+            return DAV.Modificar(vehiculo, codigo);
+        }
+
         public List<Vehiculo> ObtenerTodo() {
             return DAV.ObtenerTodo();
         }
