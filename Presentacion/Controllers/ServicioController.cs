@@ -63,5 +63,19 @@ namespace Presentacion.Controllers
             }
             return Content(msj);
         }
+
+        public ActionResult EliminarServicio(int codigo) {
+            string msj = "";
+
+            if (BLS.Eliminar(codigo).Equals("Los datos del servicio, se eliminaron correctamente."))
+            {
+                msj = "<script languaje='javascript' type='text/javascript'> alert('Tarea Existosa'); window.location.href='/Servicio/ListaServicios'; </script>'";
+            }
+            else
+            {
+                msj = "<script languaje='javascript' type='text/javascript'> alert('Error, Servicio no eliminado'); window.location.href='/Servicio/ListaServicios'; </script>'";
+            }
+            return Content(msj);
+        }
     }
 }
