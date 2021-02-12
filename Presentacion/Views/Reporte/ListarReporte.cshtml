@@ -1,0 +1,28 @@
+﻿@model List<Entidades.Vehiculo_Servicio>
+
+@{
+    ViewBag.Title = "ListarReporte";
+    Layout = "~/Views/layout/layoutMenu.cshtml";
+}
+
+<h2>Reporte de servicios asociados a vehículos</h2>
+
+<table border="1">
+    <tr>
+        <th>Consecutivo</th>
+        <th>ID Servicio</th>
+        <th>Descripción</th>
+        <th>Placa</th>
+        <th>Dueño</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>@item.ID_Vehiculo_Servicio</td>
+    <td>@item.Servicios.ID_Servicio</td>
+    <td>@item.Servicios.Descripcion</td>
+    <td>@item.Vehiculo.Placa</td>
+    <td>@item.Vehiculo.Dueno</td>
+</tr>
+    }
+</table>

@@ -14,6 +14,7 @@ namespace AccesoDatos
     {
         public Boolean isError;
         public String errorDescripcion;
+
         public string Agregar(Vehiculo_Servicio veh_ser)
         {
             try
@@ -100,14 +101,24 @@ namespace AccesoDatos
             return "Los datos se eliminaron correctamente.";
         }
 
-        public DataTable ObtenerTodo()
+        public List<Vehiculo_Servicio> ObtenerTodo()
         {
             try
             {
                 string Cadena = ConfigurationManager.ConnectionStrings["Prueba"].ConnectionString;
                 DA.Conexion Con = new DA.Conexion(Cadena);
-                SqlCommand query = new SqlCommand("SELECT vs.[ID_Vehiculo - Servicio] AS Consecutivo, s.ID_Servicio AS[Servicio], s.Descripcion, v.Placa, v.Dueno AS Dueño FROM Servicios s, Vehiculo v, [Vehiculo - Servicio] vs  WHERE s.ID_Servicio = vs.[ID_Servicio] and v.ID_Vehiculo = vs.[ID_Vehiculo]");
+                SqlCommand query = new SqlCommand("SELECT vs.[ID_Vehiculo-Servicio] AS Consecutivo, s.ID_Servicio AS IDservicio, v.ID_Vehiculo AS IDvehiculo FROM Servicios s, Vehiculo v, [Vehiculo-Servicio] vs  WHERE s.ID_Servicio = vs.[ID_Servicio] and v.ID_Vehiculo = vs.[ID_Vehiculo]");
                 DataTable Tabla = Con.ejecutarConsultaSQLTablaSegura(query);
+                List<Vehiculo_Servicio> listVS = new List<Vehiculo_Servicio>();
+
+                for (int i = 0; i < Tabla.Rows.Count; i++)
+                {
+                    Vehiculo_Servicio vs = new Vehiculo_Servicio();
+                    vs.ID_Vehiculo_Servicio = Convert.ToInt32(Tabla.Rows[i]["Consecutivo"].ToString());
+                    vs.ID_Servicio = Convert.ToInt32(Tabla.Rows[i]["IDservicio"].ToString());
+                    vs.ID_Vehiculo = Convert.ToInt32(Tabla.Rows[i]["IDvehiculo"].ToString());
+                    listVS.Add(vs);
+                }
 
                 if (Con.IsError)
                 {
@@ -117,7 +128,7 @@ namespace AccesoDatos
                 else
                 {
                     Con.Destruir();
-                    return Tabla;
+                    return listVS;
                 }
             }
             catch (Exception ex)
