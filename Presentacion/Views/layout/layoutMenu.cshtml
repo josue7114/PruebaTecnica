@@ -1,0 +1,26 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div>
+        <nav>
+            <ul>
+                <li><a href="/Vehiculo/Inicio">Inicio</a></li>
+                <li><a href="/Vehiculo/ListaVehiculos">Lista Vehículos</a></li>
+                <li><a href="/Vehiculo/AgregarVehiculo">Agregar Vehículo</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

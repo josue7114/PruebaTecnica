@@ -102,7 +102,7 @@ namespace AccesoDatos
             return "Los datos del vehículo, se eliminaron correctamente.";
         }
 
-        public DataTable ObtenerTodo()
+        public List<Vehiculo> ObtenerTodo()
         {
             try
             {
@@ -110,7 +110,17 @@ namespace AccesoDatos
                 DA.Conexion Con = new DA.Conexion(Cadena);
                 SqlCommand query = new SqlCommand("SELECT ID_Vehiculo, Placa, Dueno, Marca FROM Vehiculo ORDER BY ID_Vehiculo");
                 DataTable Tabla = Con.ejecutarConsultaSQLTablaSegura(query);
+                List<Vehiculo> lisV = new List<Vehiculo>();
 
+                foreach (DataRow item in Tabla.Rows)
+                {
+                    Vehiculo vehiculo = new Vehiculo();
+                    vehiculo.ID_Vehiculo = Convert.ToInt32(item["ID_Vehiculo"].ToString());
+                    vehiculo.Placa = item["Placa"].ToString();
+                    vehiculo.Dueno = item["Dueno"].ToString();
+                    vehiculo.Marca = item["Marca"].ToString();
+                    lisV.Add(vehiculo);
+                }
                 if (Con.IsError)
                 {
                     Con.Destruir();
@@ -119,7 +129,7 @@ namespace AccesoDatos
                 else
                 {
                     Con.Destruir();
-                    return Tabla;
+                    return lisV;
                 }
             }
             catch (Exception ex)

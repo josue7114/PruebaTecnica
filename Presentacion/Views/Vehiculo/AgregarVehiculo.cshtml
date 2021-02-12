@@ -1,0 +1,30 @@
+﻿@model Entidades.Vehiculo
+
+@{
+    ViewBag.Title = "AgregarVehiculo";
+    Layout = "~/Views/layout/layoutMenu.cshtml";
+}
+
+<h2>Agregar Vehiculo</h2>
+
+<div>
+    @using (Html.BeginForm("InsertarVehiculo", "Vehiculo", FormMethod.Post)) { 
+    <div>
+        <div>
+            <label for="placa">Placa:</label>
+            <input type="text" name="txtplaca" />
+        </div>
+        <div>
+            <label for="dueno">Dueño:</label>
+            <input type="text" name="txtdueno" />
+        </div>
+        <div>
+            <label for="marca">Marca:</label>
+            <input type="text" name="txtmarca" />
+        </div>
+        <div>
+            <button type="submit">Agregar</button>
+        </div>
+    </div>
+    }
+</div>
